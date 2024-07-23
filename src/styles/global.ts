@@ -17,4 +17,8 @@ export const GlobalStyles = createGlobalStyle`
     font-size: 1rem;
     line-height: 1.3;
   }
+
+  button:hover {
+    cursor: pointer;
+  }
 `

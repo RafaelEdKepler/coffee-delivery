@@ -74,3 +74,22 @@ export const MainSectionImageContainer = styled.div`
     height: 22.5rem;
   }
 `;
+
+export const ProductsSectionContainer = styled.section`
+  padding: 2rem 10rem;
+  display: flex;
+  flex-direction: column;
+
+  h2 {
+    font-family: "Baloo 2", sans-serif;
+    font-size: 2rem;
+    font-weight: 800;
+  }
+`;
+
+export const ProductsList = styled.div`
+  padding: 3.375rem 0;
+
+  display: grid;
+  grid-template-columns: 20vw 20vw 20vw 20vw;
+`;

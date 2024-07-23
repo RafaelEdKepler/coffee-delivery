@@ -2,7 +2,8 @@ import { Coffee, Package, ShoppingCart, Timer } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
 
 import MainImage from "../../assets/Main.png";
-import { MainSectionContainer, MainSectionImageContainer, MainSectionInfoContainer, MainSectionInstructionsContainer, SingleInfoContainer } from "./styles";
+import { MainSectionContainer, MainSectionImageContainer, MainSectionInfoContainer, MainSectionInstructionsContainer, ProductsList, ProductsSectionContainer, SingleInfoContainer } from "./styles";
+import { Product } from "./components/Product";
 
 export function Main() {
   return (
@@ -43,6 +44,15 @@ export function Main() {
           <img src={MainImage} alt="Imagem de um copo de café com vários grãos de café atrás em um fundo amarelado meio arredondado" />
         </MainSectionImageContainer>
       </MainSectionContainer>
+      <ProductsSectionContainer>
+        <h2>Nossos cafés</h2>
+        <ProductsList>
+          <Product />
+          <Product />
+          <Product />
+          <Product />
+        </ProductsList>
+      </ProductsSectionContainer>
     </>
   )
 }
