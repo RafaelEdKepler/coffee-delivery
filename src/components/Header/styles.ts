@@ -38,15 +38,3 @@ export const LocationContainer = styled.div`
   gap: 4px;
 `;
 
-export const CartContainer = styled.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  width: 2.375rem;
-  height: 2.375rem;
-
-  background-color: ${props => props.theme["yellow-light"]};
-  color: ${props => props.theme["yellow-dark"]};
-`;
-

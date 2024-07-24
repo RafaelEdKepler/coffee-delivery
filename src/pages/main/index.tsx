@@ -4,8 +4,14 @@ import { Header } from "../../components/Header";
 import MainImage from "../../assets/Main.png";
 import { MainSectionContainer, MainSectionImageContainer, MainSectionInfoContainer, MainSectionInstructionsContainer, ProductsList, ProductsSectionContainer, SingleInfoContainer } from "./styles";
 import { Product } from "./components/Product";
+import useCart from "../../hooks/useCart";
 
 export function Main() {
+
+  const { addProduct, removeProduct, products } = useCart();
+
+  console.log(products)
+
   return (
     <>
       <Header />
@@ -16,13 +22,13 @@ export function Main() {
           <MainSectionInstructionsContainer>
             <SingleInfoContainer iconColor="yellowDark">
               <div>
-                <ShoppingCart size={16} weight="fill" />
+                <ShoppingCart size={16} weight="fill" onClick={() => addProduct()} />
               </div>
               <span>Compra simples e segura</span>
             </SingleInfoContainer>
             <SingleInfoContainer iconColor="base">
               <div>
-                <Package size={16} weight="fill" />
+                <Package size={16} weight="fill" onClick={removeProduct} />
               </div>
               <span>Embalagem mantém o café intacto</span>
             </SingleInfoContainer>
