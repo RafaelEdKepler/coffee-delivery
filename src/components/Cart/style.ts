@@ -1,6 +1,10 @@
 import styled from "styled-components";
 import { CartProps, COLOR_OPTIONS } from "./types";
 
+interface NumberContainerProps {
+  quantity: number
+}
+
 export const CartNumberContainer = styled.div`
   display: flex;
 `;
@@ -19,8 +23,9 @@ export const CartContainer = styled.button<CartProps>`
   color: ${props => props.color === "purple" ? props.theme.white : props.theme["yellow-dark"]};
 `;
 
-export const NumberContainer = styled.div`
+export const NumberContainer = styled.div<NumberContainerProps>`
   display: flex;
+  opacity: ${props => props.quantity > 0 ? 1 : 0};
   justify-content: center;
   align-items: center;
   width: 20px;

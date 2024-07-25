@@ -5,12 +5,12 @@ import MainImage from "../../assets/Main.png";
 import { MainSectionContainer, MainSectionImageContainer, MainSectionInfoContainer, MainSectionInstructionsContainer, ProductsList, ProductsSectionContainer, SingleInfoContainer } from "./styles";
 import { Product } from "./components/Product";
 import useCart from "../../hooks/useCart";
+import { productsList } from "../../utils/products";
 
 export function Main() {
 
-  const { addProduct, removeProduct, products } = useCart();
+  const { addProduct, removeProduct } = useCart();
 
-  console.log(products)
 
   return (
     <>
@@ -53,10 +53,9 @@ export function Main() {
       <ProductsSectionContainer>
         <h2>Nossos cafés</h2>
         <ProductsList>
-          <Product />
-          <Product />
-          <Product />
-          <Product />
+          {productsList && productsList.map(product => (
+            <Product key={product.id} id={product.id} img={product.img} label={product.label} name={product.name} price={product.price} description={product.description} />
+          ))}
         </ProductsList>
       </ProductsSectionContainer>
     </>

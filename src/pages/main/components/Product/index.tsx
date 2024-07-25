@@ -1,32 +1,37 @@
 import { Cart } from "../../../../components/Cart";
 import { Selector } from "../../../../components/Selector";
-import Coffee from "../../../../assets/Type=Irlandês.png";
 import { DescriptionProductContainer, ImgContainer, LabelContainer, PriceCartContainer, PriceContainer, ProductContainer, TitleProductContainer } from "./style";
+import { productProps } from "../../../../utils/products";
 
-export function Product() {
+export function Product({ id, img, label, name, price, description }: productProps) {
   return (
     <ProductContainer>
       <ImgContainer>
-        <img src={Coffee} />
+        <img src={img} />
       </ImgContainer>
       <LabelContainer>
-        <span>TRADICIONAL</span>
-        <span>TRADICIONAL</span>
+        {label.length > 0 && (
+          label.map(text => (
+            <span>{text.toUpperCase()}</span>
+          ))
+        )}
       </LabelContainer>
       <TitleProductContainer>
-        <h3>Expresso Tradicional</h3>
+        <h3>{name}</h3>
       </TitleProductContainer>
       <DescriptionProductContainer>
-        <span>O tradicional café feito com água quente e grãos moídos</span>
+        <span>{description}</span>
       </DescriptionProductContainer>
       <PriceCartContainer>
         <PriceContainer>
           <span>R$</span>
           <h3>
-            9,90
+            {price.toLocaleString("pt-BR", {
+              minimumFractionDigits: 2
+            })}
           </h3>
         </PriceContainer>
-        <Selector />
+        <Selector id={id} />
         <Cart color="purple" />
       </PriceCartContainer>
     </ProductContainer>

@@ -5,16 +5,18 @@ import useCart from "../../hooks/useCart";
 
 export function Cart({ color }: CartProps) {
 
-  const { state } = useCart();
+  const { calculateQuantityProductsInCart } = useCart();
+
+  const quantityOfProducts = calculateQuantityProductsInCart();
 
   return (
     <CartNumberContainer>
       <CartContainer color={color}>
         <ShoppingCart weight="fill" size={22} />
       </CartContainer>
-      {state && state.products && state.products.length > 0 && color === "yellow" && (
-        <NumberContainer>
-          <span>{state.products ? state.products.length : 0}</span>
+      {color === "yellow" && (
+        <NumberContainer quantity={quantityOfProducts}>
+          <span>{quantityOfProducts}</span>
         </NumberContainer>
       )}
     </CartNumberContainer>

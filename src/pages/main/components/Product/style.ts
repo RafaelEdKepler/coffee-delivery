@@ -13,6 +13,7 @@ export const ProductContainer = styled.div`
 
   border-radius: 6px 36px 6px 36px;
   padding: 0 1.5rem 1.5rem 1.5rem;
+  margin-bottom: 2.5rem;
 `;
 
 export const ImgContainer = styled.div`
@@ -70,6 +71,7 @@ export const DescriptionProductContainer = styled.div`
     margin-top: 0.5rem;
 
     span {
+      text-align: center;
       font-size: 0.875;
       color: ${props => props.theme["base-label"]};
     }

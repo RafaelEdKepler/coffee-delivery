@@ -22,8 +22,33 @@ export function CartReducer(state: stateProps, action: actionProps) {
       if (positionProductRemoved >= 0) {
         draft.products.splice(positionProductRemoved, 1);
       }
-      console.log(draft.products)
       return draft;
+    })
+  }
+
+  if (action.type === ActionTypes.DECREASE_PRODUCT_QUANTITY_FROM_CART) {
+    return produce(state, draft => {
+      draft.products.map(product => {
+        if (product.id === action.payload.id) {
+          product.quantity -= action.payload.quantity;
+          if (product.quantity < 0) {
+            product.quantity = 0;
+          }
+        }
+        return product;
+      })
+    })
+  }
+
+  console.log(action)
+  if (action.type === ActionTypes.INCREASE_PRODUCT_QUANTITY_FROM_CART) {
+    return produce(state, draft => {
+      draft.products.map(product => {
+        if (product.id === action.payload.id) {
+          product.quantity += action.payload.quantity;
+        }
+        return product;
+      })
     })
   }
 
