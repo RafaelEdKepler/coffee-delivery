@@ -1,6 +1,6 @@
-import { MapPinLine } from "@phosphor-icons/react";
+import { CurrencyDollarSimple, MapPinLine } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
-import { AddressContainer, AddressPaymentContainer, CheckoutContainer, TitleAddressContainer } from "./style";
+import { AddressContainer, AddressPaymentContainer, CheckoutContainer, PaymentContainer, PaymentTitleContainer, TitleAddressContainer } from "./style";
 import { Form } from "./components/form";
 
 export function Checkout() {
@@ -20,9 +20,15 @@ export function Checkout() {
             </TitleAddressContainer>
             <Form />
           </AddressContainer>
-          <div>
-
-          </div>
+          <PaymentContainer>
+            <PaymentTitleContainer>
+              <CurrencyDollarSimple size={22} />
+              <div>
+                <h3>Pagamento</h3>
+                <span>O pagamento é feito na entrega. Escolha a forma que deseja pagar</span>
+              </div>
+            </PaymentTitleContainer>
+          </PaymentContainer>
         </AddressPaymentContainer>
         <div>
 

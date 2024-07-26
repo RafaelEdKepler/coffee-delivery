@@ -49,3 +49,13 @@ export const TitleAddressContainer = styled.div`
     color: ${props => props.theme["base-text"]};
   }
 `;
+
+export const PaymentContainer = styled(AddressContainer)`
+  height: 12.938rem;
+`;
+
+export const PaymentTitleContainer = styled(TitleAddressContainer)`
+  svg {
+    color: ${props => props.theme.purple};
+  }
+`;
