@@ -9,6 +9,11 @@ export const GlobalStyles = createGlobalStyle`
 
   body {
     background-image: url("./Background.png");
+    margin: 2.5rem 10rem;
+
+    @media (max-width: 1024px) {
+      margin: 2.5rem 5rem;
+    }
   }
 
   body, input, textarea, button {

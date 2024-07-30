@@ -5,7 +5,7 @@ export const HeaderContainer = styled.header`
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2rem 10rem;
+  padding-bottom: 2rem ;
 
   img:first-child {
     width: 5.309rem;

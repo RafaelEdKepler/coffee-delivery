@@ -2,7 +2,6 @@ import styled from "styled-components";
 
 export const CheckoutContainer = styled.div`
   display: flex;
-  margin: 2.5rem 10rem;
 `;
 
 export const AddressPaymentContainer = styled.section`
@@ -58,4 +57,24 @@ export const PaymentTitleContainer = styled(TitleAddressContainer)`
   svg {
     color: ${props => props.theme.purple};
   }
+`;
+
+export const PaymentButtonsContainer = styled.div`
+  padding-top: 2rem;
+  display: flex;
+  gap: 0.75rem;
+`;
+
+export const CartContainer = styled(AddressPaymentContainer)`
+  width: 28rem;
+  gap: 15px;
+  margin-left: 2rem;
+`;
+
+export const Cart = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 2.5rem;
+  background-color: ${props => props.theme["base-card"]};
+  border-radius: 6px 36px 6px 36px;
 `;

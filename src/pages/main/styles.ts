@@ -14,7 +14,6 @@ interface IconsProps {
 export const MainSectionContainer = styled.section`
   display: flex;
   flex-direction: row;
-  padding: 5.75rem 10rem;
 `;
 
 export const MainSectionInfoContainer = styled.div`
@@ -76,7 +75,7 @@ export const MainSectionImageContainer = styled.div`
 `;
 
 export const ProductsSectionContainer = styled.section`
-  padding: 2rem 10rem;
+  padding: 9.094rem 0;
   display: flex;
   flex-direction: column;
 
@@ -92,4 +91,8 @@ export const ProductsList = styled.div`
 
   display: grid;
   grid-template-columns: 20vw 20vw 20vw 20vw;
+
+  @media (max-width: 768px) {
+    grid-template-columns: 25vw 25vw 25vw 25vw;
+  }
 `;

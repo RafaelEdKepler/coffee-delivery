@@ -83,6 +83,7 @@ export const PriceCartContainer = styled.div`
   align-items: center;
 
   margin-top: 2.063rem;
+  gap: 0.7rem;
   width: 13rem;
 `;
 

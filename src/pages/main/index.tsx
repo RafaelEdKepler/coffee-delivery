@@ -4,14 +4,9 @@ import { Header } from "../../components/Header";
 import MainImage from "../../assets/Main.png";
 import { MainSectionContainer, MainSectionImageContainer, MainSectionInfoContainer, MainSectionInstructionsContainer, ProductsList, ProductsSectionContainer, SingleInfoContainer } from "./styles";
 import { Product } from "./components/Product";
-import useCart from "../../hooks/useCart";
 import { productsList } from "../../utils/products";
 
 export function Main() {
-
-  const { addProduct, removeProduct } = useCart();
-
-
   return (
     <>
       <Header />
@@ -22,13 +17,13 @@ export function Main() {
           <MainSectionInstructionsContainer>
             <SingleInfoContainer iconColor="yellowDark">
               <div>
-                <ShoppingCart size={16} weight="fill" onClick={() => addProduct()} />
+                <ShoppingCart size={16} weight="fill" />
               </div>
               <span>Compra simples e segura</span>
             </SingleInfoContainer>
             <SingleInfoContainer iconColor="base">
               <div>
-                <Package size={16} weight="fill" onClick={removeProduct} />
+                <Package size={16} weight="fill" />
               </div>
               <span>Embalagem mantém o café intacto</span>
             </SingleInfoContainer>
