@@ -77,4 +77,9 @@ export const Cart = styled.div`
   padding: 2.5rem;
   background-color: ${props => props.theme["base-card"]};
   border-radius: 6px 36px 6px 36px;
+
+  hr {
+    border-top: ${props => props.theme["base-button"]};
+    margin-bottom: 1.5rem;
+  }
 `;

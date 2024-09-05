@@ -4,6 +4,7 @@ export const ProductCartContainer = styled.div`
     display: flex;
     justify-content: flex-start;
     width: 23rem;
+    height: 5rem;
 
     img {
         width: 4rem;

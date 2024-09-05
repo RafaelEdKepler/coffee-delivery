@@ -1,4 +1,4 @@
-import { CreditCard, CurrencyDollarSimple, MapPinLine } from "@phosphor-icons/react";
+import { CurrencyDollarSimple, MapPinLine } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
 import { AddressContainer, AddressPaymentContainer, Cart, CartContainer, CheckoutContainer, PaymentButtonsContainer, PaymentContainer, PaymentTitleContainer, TitleAddressContainer } from "./style";
 import { Form } from "./components/Form";
@@ -31,9 +31,9 @@ export function Checkout() {
               </div>
             </PaymentTitleContainer>
             <PaymentButtonsContainer>
-              <Button image="credit" size="medium" title="CARTÃO DE CRÉDITO"/>
-              <Button image="bank" size="medium" title="CARTÃO DE DÉBITO"/>
-              <Button image="money" size="medium" title="DINHEIRO"/>
+              <Button image="credit" size="medium" title="CARTÃO DE CRÉDITO" />
+              <Button image="bank" size="medium" title="CARTÃO DE DÉBITO" />
+              <Button image="money" size="medium" title="DINHEIRO" />
             </PaymentButtonsContainer>
           </PaymentContainer>
         </AddressPaymentContainer>
@@ -41,8 +41,9 @@ export function Checkout() {
           <h2>Cafés selecionados</h2>
           <Cart>
             <div>
-              <ProductCart/>
-              <ProductCart/>
+              <ProductCart />
+              <hr />
+              <ProductCart />
             </div>
             <div>
               <span>valores</span>
