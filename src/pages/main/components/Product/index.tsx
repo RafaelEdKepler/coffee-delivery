@@ -2,6 +2,7 @@ import { Cart } from "../../../../components/Cart";
 import { Selector } from "../../../../components/Selector";
 import { DescriptionProductContainer, ImgContainer, LabelContainer, PriceCartContainer, PriceContainer, ProductContainer, TitleProductContainer } from "./style";
 import { productProps } from "../../../../utils/products";
+import { returnPriceFormatted } from "../../../../utils/returnPriceFormatted";
 
 export function Product({ id, img, label, name, price, description }: productProps) {
   return (
@@ -26,9 +27,7 @@ export function Product({ id, img, label, name, price, description }: productPro
         <PriceContainer>
           <span>R$</span>
           <h3>
-            {price.toLocaleString("pt-BR", {
-              minimumFractionDigits: 2
-            })}
+            {returnPriceFormatted(price)}
           </h3>
         </PriceContainer>
         <Selector id={id} />

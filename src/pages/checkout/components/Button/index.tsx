@@ -1,24 +1,23 @@
-import React, { useState } from "react";
 import { ButtonContainer } from "./style";
 import { Bank, CreditCard, Money, Trash } from "@phosphor-icons/react";
 
 interface ButtonProps {
     image: string,
     title: string,
-    size: "small" | "medium"
+    size: "small" | "medium",
+    setPaymentMethodSelected?: (button: string) => void,
+    selected?: boolean;
 }
 
-export function Button({image, title, size}: ButtonProps) {
-
-    const [selected, setSelected] = useState(false);
+export function Button({ image, title, size, setPaymentMethodSelected, selected = false }: ButtonProps) {
 
     function handleClickButton() {
-        size === "medium" && setSelected(!selected);
+        setPaymentMethodSelected && setPaymentMethodSelected(title);
     }
 
     function handleShowIcon() {
         if (image === "credit") {
-            return (<CreditCard size={16}/>)
+            return (<CreditCard size={16} />)
         }
         if (image === "bank") {
             return (<Bank size={16} />)

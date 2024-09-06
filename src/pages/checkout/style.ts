@@ -2,11 +2,14 @@ import styled from "styled-components";
 
 export const CheckoutContainer = styled.div`
   display: flex;
+  width: 100%;
+  justify-content: center;
 `;
 
 export const AddressPaymentContainer = styled.section`
   display: flex;
   flex-direction: column;
+  width: 75%;
 
   h2 {
     font-family: 'Baloo 2', sans-serif;
@@ -19,7 +22,7 @@ export const AddressContainer = styled.div`
   margin-top: 1rem;
   display: flex;
   flex-direction: column;
-  width: 40rem;
+  width: 100%;
   height: 23.25rem;
   background-color: ${props => props.theme["base-card"]};
   border-radius: 6px;
@@ -83,3 +86,48 @@ export const Cart = styled.div`
     margin-bottom: 1.5rem;
   }
 `;
+
+export const ValuesContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 1.5rem;
+
+  div {
+    display: flex;
+    justify-content: space-between;
+
+    span {
+      color: ${props => props.theme["base-text"]};
+      font-size: 0.875rem;
+    }
+
+    h3 {
+      color: ${props => props.theme["base-subtitle"]};
+      font-size: 1.25rem;
+      font-weight: bold;
+    }
+  }
+
+  div:not(first-child) {
+    margin-top: 0.75rem;
+  }
+`;
+
+export const ConfirmButton = styled.button`
+  width: 23rem;
+  height: 2.875rem;
+  border-radius: 6px;
+  background: ${props => props.theme.yellow};
+  transition: 0.2s;
+  border: none;
+
+  span {
+    color: ${props => props.theme.white};
+    font-size: 0.875rem;
+    text-transform: uppercase;
+  }
+
+  &:hover {
+    background: ${props => props.theme["yellow-dark"]};
+  }
+`

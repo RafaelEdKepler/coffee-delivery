@@ -1,11 +1,25 @@
 import { CurrencyDollarSimple, MapPinLine } from "@phosphor-icons/react";
 import { Header } from "../../components/Header";
-import { AddressContainer, AddressPaymentContainer, Cart, CartContainer, CheckoutContainer, PaymentButtonsContainer, PaymentContainer, PaymentTitleContainer, TitleAddressContainer } from "./style";
+import { AddressContainer, AddressPaymentContainer, Cart, CartContainer, CheckoutContainer, ConfirmButton, PaymentButtonsContainer, PaymentContainer, PaymentTitleContainer, TitleAddressContainer, ValuesContainer } from "./style";
 import { Form } from "./components/Form";
 import { Button } from "./components/Button";
 import { ProductCart } from "./components/ProductCart";
+import useCart from "../../hooks/useCart";
+import { useEffect, useState } from "react";
+import { returnPriceFormatted } from "../../utils/returnPriceFormatted";
 
 export function Checkout() {
+
+  const [totalValueProducts, setTotalValueProducts] = useState(0);
+  const [paymentMethodSelected, setPaymentMethodSelected] = useState("")
+  const { state, getTotalValueOfCart } = useCart();
+  const coffees = state.products;
+
+  useEffect(() => {
+    console.log(paymentMethodSelected)
+    setTotalValueProducts(getTotalValueOfCart());
+  }, [getTotalValueOfCart])
+
   return (
     <>
       <Header />
@@ -31,9 +45,9 @@ export function Checkout() {
               </div>
             </PaymentTitleContainer>
             <PaymentButtonsContainer>
-              <Button image="credit" size="medium" title="CARTÃO DE CRÉDITO" />
-              <Button image="bank" size="medium" title="CARTÃO DE DÉBITO" />
-              <Button image="money" size="medium" title="DINHEIRO" />
+              <Button image="credit" size="medium" title="CARTÃO DE CRÉDITO" setPaymentMethodSelected={setPaymentMethodSelected} selected={paymentMethodSelected === "CARTÃO DE CRÉDITO"} />
+              <Button image="bank" size="medium" title="CARTÃO DE DÉBITO" setPaymentMethodSelected={setPaymentMethodSelected} selected={paymentMethodSelected === "CARTÃO DE DÉBITO"} />
+              <Button image="money" size="medium" title="DINHEIRO" setPaymentMethodSelected={setPaymentMethodSelected} selected={paymentMethodSelected === "DINHEIRO"} />
             </PaymentButtonsContainer>
           </PaymentContainer>
         </AddressPaymentContainer>
@@ -41,16 +55,29 @@ export function Checkout() {
           <h2>Cafés selecionados</h2>
           <Cart>
             <div>
-              <ProductCart />
-              <hr />
-              <ProductCart />
+              {coffees && coffees.length > 0 && (
+                coffees.map((coffee) => (
+                  <ProductCart {...coffee} />
+                ))
+              )}
             </div>
-            <div>
-              <span>valores</span>
-              <span>valores</span>
-              <span>valores</span>
-            </div>
-            <button>Confirmar Pedido</button>
+            <ValuesContainer>
+              <div>
+                <span>Total de Itens:</span>
+                <span>{returnPriceFormatted(totalValueProducts, true)}</span>
+              </div>
+              <div>
+                <span>Entrega</span>
+                <span>R$ 10,00</span>
+              </div>
+              <div>
+                <h3>Total</h3>
+                <h3>{returnPriceFormatted(totalValueProducts + 10, true)}</h3>
+              </div>
+            </ValuesContainer>
+            <ConfirmButton>
+              <span>Confirmar Pedido</span>
+            </ConfirmButton>
           </Cart>
         </CartContainer>
       </CheckoutContainer>

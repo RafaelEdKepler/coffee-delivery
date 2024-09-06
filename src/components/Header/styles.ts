@@ -11,6 +11,10 @@ export const HeaderContainer = styled.header`
     width: 5.309rem;
     height: 2.5rem;
   }
+
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 export const LocationCartContainer = styled.div`

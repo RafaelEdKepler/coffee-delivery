@@ -1,23 +1,40 @@
 import { Selector } from "../../../../components/Selector";
 import { Button } from "../Button";
 
-import Image from "../../../../assets/Type=Americano.png";
 import { ProductCartContainer, ProductInfoContainer, QuantityProductContainer, UnityValueContainer } from "./style";
+import useCart, { productsProps } from "../../../../hooks/useCart";
+import { useEffect, useState } from "react";
+import { returnPriceFormatted } from "../../../../utils/returnPriceFormatted";
 
-export function ProductCart() {
+export function ProductCart({
+    id,
+    img,
+    name,
+}: productsProps) {
+
+    const { getTotalValueOfProductInCart } = useCart();
+    const [totalValue, setTotalValue] = useState(0);
+
+    useEffect(() => {
+        setTotalValue(getTotalValueOfProductInCart(id));
+    }, [getTotalValueOfProductInCart, id])
+
     return (
-        <ProductCartContainer>
-            <img src={Image}/>
-            <ProductInfoContainer>
-                <span>Expresso Tradicional</span>
-                <QuantityProductContainer>
-                    <Selector id={1}/>
-                    <Button image="trash" size="small" title="REMOVER"/>
-                </QuantityProductContainer>
-            </ProductInfoContainer>
-            <UnityValueContainer>
-                <span>R$ 9,90</span>
-            </UnityValueContainer>
-        </ProductCartContainer>
+        <>
+            <ProductCartContainer>
+                <img src={img} />
+                <ProductInfoContainer>
+                    <span>{name}</span>
+                    <QuantityProductContainer>
+                        <Selector id={id} />
+                        <Button image="trash" size="small" title="REMOVER" />
+                    </QuantityProductContainer>
+                </ProductInfoContainer>
+                <UnityValueContainer>
+                    <span>{returnPriceFormatted(totalValue, true)}</span>
+                </UnityValueContainer>
+            </ProductCartContainer>
+            <hr />
+        </>
     )
 }

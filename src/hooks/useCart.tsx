@@ -13,13 +13,16 @@ interface useCartProps {
   increaseQuantityInCart: (id: number) => void
   decreaseQuantityInCart: (id: number) => void
   totalQuantityOfProductInCart: (id: number) => number
+  getTotalValueOfProductInCart: (id: number) => number
+  getTotalValueOfCart: () => number
 }
 
 export interface productsProps {
   id: number,
   name: string,
   price: number,
-  quantity: number
+  quantity: number,
+  img: string
 }
 
 interface useCartContextProviderProps {
@@ -39,6 +42,7 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
         id: product.id,
         name: product.name,
         price: product.price,
+        img: product.img,
         quantity: 1
       }))
     }
@@ -69,6 +73,14 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
     return totalOfProduct;
   }
 
+  function getTotalValueOfCart() {
+    return state.products.reduce((total, product) => ((total + product.price * product.quantity)), 0)
+  }
+
+  function getTotalValueOfProductInCart(id: number) {
+    return state.products.reduce((total, product) => (product.id === id ? total + product.price * product.quantity : total + 0), 0)
+  }
+
   const calculateQuantityProductsInCart = useCallback(() => {
     return state.products.reduce((total, product) => (total + product.quantity), 0)
   }, [state.products])
@@ -81,7 +93,9 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
       calculateQuantityProductsInCart,
       increaseQuantityInCart,
       decreaseQuantityInCart,
-      totalQuantityOfProductInCart
+      totalQuantityOfProductInCart,
+      getTotalValueOfCart,
+      getTotalValueOfProductInCart
     }}>
       {children}
     </UseCartContext.Provider>
