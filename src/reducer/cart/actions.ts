@@ -1,11 +1,4 @@
-import { productsProps } from "../../hooks/useCart";
-
-export enum ActionTypes {
-  ADD_NEW_PRODUCT = "ADD_NEW_PRODUCT",
-  REMOVE_PRODUCT_FROM_CART = "REMOVE_PRODUCT_FROM_CART",
-  DECREASE_PRODUCT_QUANTITY_FROM_CART = "DECREASE_PRODUCT_QUANTITY_FROM_CART",
-  INCREASE_PRODUCT_QUANTITY_FROM_CART = "INCREASE_PRODUCT_QUANTITY_FROM_CART"
-}
+import { ActionTypes, orderProps, productsProps } from "./types";
 
 export function addNewItemOnCart(product: productsProps) {
   return {
@@ -42,5 +35,18 @@ export function increaseProductQuantityFromCart(id: number, quantity: number) {
       quantity,
       id
     }
+  }
+}
+
+export function createNewOrder(props: orderProps) {
+  return {
+    type: ActionTypes.ADD_NEW_ORDER,
+    payload: { ...props }
+  }
+}
+
+export function getOrder() {
+  return {
+    type: ActionTypes.GET_ORDER,
   }
 }

@@ -7,18 +7,22 @@ import { ProductCart } from "./components/ProductCart";
 import useCart from "../../hooks/useCart";
 import { useEffect, useState } from "react";
 import { returnPriceFormatted } from "../../utils/returnPriceFormatted";
+import { FormType, useFormHook } from "../../hooks/useForm";
 
 export function Checkout() {
-
   const [totalValueProducts, setTotalValueProducts] = useState(0);
   const [paymentMethodSelected, setPaymentMethodSelected] = useState("")
   const { state, getTotalValueOfCart } = useCart();
+  const { validateFields } = useFormHook();
   const coffees = state.products;
 
   useEffect(() => {
-    console.log(paymentMethodSelected)
     setTotalValueProducts(getTotalValueOfCart());
   }, [getTotalValueOfCart])
+
+  function submitValues(data: FormType) {
+    // validateFields(data)
+  }
 
   return (
     <>

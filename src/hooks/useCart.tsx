@@ -2,6 +2,7 @@ import { createContext, ReactNode, useCallback, useContext, useReducer } from "r
 import { CartReducer } from "../reducer/cart/reducer";
 import { addNewItemOnCart, decreaseProductQuantityFromCart, increaseProductQuantityFromCart, removeItemFromCart } from "../reducer/cart/actions";
 import { productProps, productsList } from "../utils/products";
+import { orderProps, PaymentMethods, productsProps, stateProps } from "../reducer/cart/types";
 
 interface useCartProps {
   addProduct: (id: number) => void
@@ -15,14 +16,7 @@ interface useCartProps {
   totalQuantityOfProductInCart: (id: number) => number
   getTotalValueOfProductInCart: (id: number) => number
   getTotalValueOfCart: () => number
-}
-
-export interface productsProps {
-  id: number,
-  name: string,
-  price: number,
-  quantity: number,
-  img: string
+  getOrder: () => orderProps | undefined
 }
 
 interface useCartContextProviderProps {
@@ -33,7 +27,28 @@ const UseCartContext = createContext({} as useCartProps);
 
 export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
 
-  const [state, dispatch] = useReducer((CartReducer), { products: [], }, (initialState) => (initialState));
+  const [state, dispatch] = useReducer(
+    CartReducer,
+    {
+      products: [],
+      order: undefined
+    }, (initialState: stateProps): stateProps => {
+      return {
+        products: initialState.products,
+        order: {
+          address: {
+            cep: "",
+            city: "",
+            complement: "",
+            neighborhood: "",
+            number: "",
+            street: "",
+            uf: ""
+          },
+          payment: PaymentMethods.CREDIT
+        }
+      }
+    });
 
   function addProduct(id: number) {
     const product = productsList.find((product: productProps) => product.id === id);
@@ -65,7 +80,7 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
 
   function totalQuantityOfProductInCart(id: number) {
     let totalOfProduct = 0;
-    state.products.forEach(product => {
+    state.products.forEach((product: productsProps) => {
       if (product.id === id) {
         totalOfProduct += product.quantity;
       }
@@ -74,15 +89,19 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
   }
 
   function getTotalValueOfCart() {
-    return state.products.reduce((total, product) => ((total + product.price * product.quantity)), 0)
+    return state.products.reduce((total: number, product: productsProps) => ((total + product.price * product.quantity)), 0)
   }
 
   function getTotalValueOfProductInCart(id: number) {
-    return state.products.reduce((total, product) => (product.id === id ? total + product.price * product.quantity : total + 0), 0)
+    return state.products.reduce((total: number, product: productsProps) => (product.id === id ? total + product.price * product.quantity : total + 0), 0)
+  }
+
+  function getOrder() {
+    return state.order && state.order;
   }
 
   const calculateQuantityProductsInCart = useCallback(() => {
-    return state.products.reduce((total, product) => (total + product.quantity), 0)
+    return state.products.reduce((total: number, product: productsProps) => (total + product.quantity), 0)
   }, [state.products])
 
   return (
@@ -95,7 +114,8 @@ export const UseCartProvider = ({ children }: useCartContextProviderProps) => {
       decreaseQuantityInCart,
       totalQuantityOfProductInCart,
       getTotalValueOfCart,
-      getTotalValueOfProductInCart
+      getTotalValueOfProductInCart,
+      getOrder
     }}>
       {children}
     </UseCartContext.Provider>
